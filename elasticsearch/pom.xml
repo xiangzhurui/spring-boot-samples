@@ -11,7 +11,8 @@
 
     <artifactId>elasticsearch</artifactId>
     <properties>
-
+        <spring-data-elasticsearch.version>3.0.0.RC2</spring-data-elasticsearch.version>
+        <elasticsearch.version>5.5.0</elasticsearch.version>
     </properties>
     <dependencies>
         <!-- Compile -->
@@ -20,8 +21,14 @@
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-elasticsearch</artifactId>
+            <version>${spring-data-elasticsearch.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.elasticsearch</groupId>
+            <artifactId>elasticsearch</artifactId>
+            <version>${elasticsearch.version}</version>
         </dependency>
         <!-- Test -->
         <dependency>
