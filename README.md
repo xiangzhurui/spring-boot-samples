@@ -1,2 +1,3 @@
 # spring-boot-samples
-my sample for spring boot
+
+一些 spring boot 相关样例
