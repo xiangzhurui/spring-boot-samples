@@ -16,5 +16,7 @@
         <module>demo-spring-boot-dubbo-api</module>
         <module>demo-spring-boot-disconf-dubbo</module>
         <module>demo-spring-boot-dubbo-consumer</module>
+        <module>demo-spring-boot-cache</module>
+        <module>demo-drools</module>
     </modules>
 </project>
