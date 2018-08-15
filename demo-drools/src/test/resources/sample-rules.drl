@@ -1,0 +1,11 @@
+package com.example.demo.rules.sample;
+
+import java.util.*
+
+rule "hello-world"
+when
+    eval(true);
+then
+    System.out.println("hello-world");
+    System.out.println(((org.kie.api.runtime.rule.RuleContext)kcontext).getRule().getName());
+end
