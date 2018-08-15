@@ -1,7 +1,10 @@
 package com.example.demo.drools.component;
 
 import com.example.demo.drools.domain.DrlDataDO;
+import com.example.demo.drools.util.KieUtils;
 import com.google.common.collect.Sets;
+import org.kie.api.builder.ReleaseId;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import java.util.Set;
@@ -40,6 +43,7 @@ public class LoadRulesComponent {
 
         return drlDataDO;
     }
+
 
     public static void main(String[] args) {
         System.out.println(drlDataDO());
