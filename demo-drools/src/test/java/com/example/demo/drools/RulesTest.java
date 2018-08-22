@@ -34,8 +34,6 @@ public class RulesTest extends DemoDroolsApplicationTests {
         System.out.println(s);
     }
 
-//    @KSession("session-sample-stateful")
-//    private KieSession ksession;
 
     @KContainer
     @KReleaseId(groupId = "com.example", artifactId = "demo-drools", version = "1.0")
