@@ -23,7 +23,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <!-- drools version-->
-        <drools.version>7.9.0.Final</drools.version>
+        <kie.version>7.10.0.Final</kie.version>
     </properties>
 
     <dependencies>
@@ -107,7 +107,7 @@
             <dependency>
                 <groupId>org.drools</groupId>
                 <artifactId>drools-bom</artifactId>
-                <version>${drools.version}</version>
+                <version>${kie.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -115,7 +115,7 @@
                 <groupId>org.kie</groupId>
                 <artifactId>kie-bom</artifactId>
                 <type>pom</type>
-                <version>${drools.version}</version>
+                <version>${kie.version}</version>
                 <scope>import</scope>
             </dependency>
         </dependencies>
