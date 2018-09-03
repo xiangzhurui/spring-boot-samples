@@ -18,5 +18,6 @@
         <module>demo-spring-boot-dubbo-consumer</module>
         <module>demo-spring-boot-cache</module>
         <module>demo-drools</module>
+        <module>demo-spring-boot-web-jsp</module>
     </modules>
 </project>
