@@ -14,10 +14,12 @@
 
     <modules>
         <module>demo-spring-boot-dubbo-api</module>
-        <module>demo-spring-boot-disconf-dubbo</module>
+        <module>demo-spring-boot-dubbo-disconf</module>
         <module>demo-spring-boot-dubbo-consumer</module>
         <module>demo-spring-boot-cache</module>
-        <module>demo-drools</module>
+        <module>demo-spring-boot-drools</module>
         <module>demo-spring-boot-web-jsp</module>
+        <module>demo-spring-boot-web-thymeleaf</module>
+        <module>demo-spark-streaming</module>
     </modules>
 </project>
