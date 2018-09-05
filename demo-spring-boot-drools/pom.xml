@@ -96,7 +96,7 @@
             <artifactId>kie-spring</artifactId>
         </dependency>
         <!-- drools engine end-->
-        <!-- Core -->
+        <!-- Jackson Core -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
@@ -208,6 +208,7 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
     <dependencyManagement>
