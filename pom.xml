@@ -21,5 +21,6 @@
         <module>demo-spring-boot-web-jsp</module>
         <module>demo-spring-boot-web-thymeleaf</module>
         <module>demo-spark-streaming</module>
+        <module>demo-spring-boot-restful</module>
     </modules>
 </project>
