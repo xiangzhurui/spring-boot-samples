@@ -1,16 +1,11 @@
 package com.xiangzhurui.demo.drools.lang.build;
 
-import com.xiangzhurui.demo.drools.lang.build.structure.ScriptDeclareType;
-import com.xiangzhurui.demo.drools.lang.build.structure.ScriptFunction;
-import com.xiangzhurui.demo.drools.lang.build.structure.ScriptGlobal;
-import com.xiangzhurui.demo.drools.lang.build.structure.ScriptImport;
-import com.xiangzhurui.demo.drools.lang.build.structure.ScriptPackage;
-import com.xiangzhurui.demo.drools.lang.build.structure.ScriptRule;
-import lombok.Builder;
-import lombok.NonNull;
-
 import java.util.Collection;
 import java.util.Collections;
+
+import com.xiangzhurui.demo.drools.lang.build.structure.*;
+import lombok.Builder;
+import lombok.NonNull;
 
 /**
  * 构建完整的规则脚本

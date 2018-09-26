@@ -1,15 +1,11 @@
 package com.xiangzhurui.demo.drools.engine;
 
-import com.google.common.collect.Maps;
-
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.Future;
-import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.RecursiveTask;
+import java.util.concurrent.*;
+
+import com.google.common.collect.Maps;
 
 /**
  * @author xiangzhurui
@@ -21,6 +17,13 @@ public class ExecuteRuleTask extends RecursiveTask<Map<String, Integer>> {
 
     public ExecuteRuleTask(Queue<String> taskQueue) {
         this.taskQueue = new LinkedBlockingDeque<>(taskQueue);
+    }
+
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+        ForkJoinPool forkJoinPool = new ForkJoinPool();
+
+        Future<Map<String, Integer>> task = forkJoinPool.submit(new ExecuteRuleTask(new LinkedList<>()));
+        Map<String, Integer> result = task.get();
     }
 
     @Override
@@ -47,12 +50,5 @@ public class ExecuteRuleTask extends RecursiveTask<Map<String, Integer>> {
 
     private Map<String, Integer> act(String s) {
         return Maps.newHashMap();
-    }
-
-    public static void main(String[] args) throws ExecutionException, InterruptedException {
-        ForkJoinPool forkJoinPool = new ForkJoinPool();
-
-        Future<Map<String, Integer>> task = forkJoinPool.submit(new ExecuteRuleTask(new LinkedList<>()));
-        Map<String, Integer> result = task.get();
     }
 }

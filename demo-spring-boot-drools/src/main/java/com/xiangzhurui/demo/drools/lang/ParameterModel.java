@@ -6,7 +6,7 @@ import java.io.Serializable;
  * @author xiangzhurui
  * @version 2018/3/19
  */
-public class ParameterModel implements Serializable{
+public class ParameterModel implements Serializable {
     private static final long serialVersionUID = -9113756826500971871L;
 
     private String typeName;

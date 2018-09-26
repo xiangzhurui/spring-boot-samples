@@ -1,18 +1,19 @@
 package com.xiangzhurui.demo.drools.engine;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+
 import lombok.extern.slf4j.Slf4j;
 import org.kie.api.definition.rule.Rule;
 import org.kie.api.event.rule.AfterMatchFiredEvent;
 import org.kie.api.event.rule.DefaultAgendaEventListener;
 import org.kie.api.runtime.rule.Match;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-
 /**
  * 获取被命中的规则
+ *
  * @author xiangzhurui
  * @version 2018/1/3
  * @since drools 6.5

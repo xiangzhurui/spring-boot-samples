@@ -21,7 +21,7 @@
         <maven-compiler-plugin.target>${java.version}</maven-compiler-plugin.target>
         <maven-compiler-plugin.source>${java.version}</maven-compiler-plugin.source>
         <!-- kie & drools version-->
-        <kie.version>7.10.0.Final</kie.version>
+        <kie.version>7.11.0.Final</kie.version>
         <jackson-bom.version>2.9.6</jackson-bom.version>
         <slf4j.version>1.7.25</slf4j.version>
     </properties>

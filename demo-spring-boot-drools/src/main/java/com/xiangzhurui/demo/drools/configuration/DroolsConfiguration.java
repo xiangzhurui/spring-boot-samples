@@ -21,18 +21,17 @@ public class DroolsConfiguration {
     @Autowired
     private LoadRulesComponent loadRulesComponent;
 
+    @Bean
+    public static KModuleAnnotationPostProcessor kModuleAnnotationPostProcessor() {
+        KModuleAnnotationPostProcessor kModuleAnnotationPostProcessor = new KModuleAnnotationPostProcessor();
+        return kModuleAnnotationPostProcessor;
+    }
 
     @Bean
     public KieContainer kieContainer() {
         // 写入kjar 项目信息
         ReleaseId defaultReleaseId = KieUtils.KIE_SERVICES.newReleaseId(KieUtils.GROUP_ID, KieUtils.ARTIFACT_ID, KieUtils.VERSION_DEFAULT);
         return KieUtils.kieContainer(defaultReleaseId, loadRulesComponent);
-    }
-
-    @Bean
-    public static KModuleAnnotationPostProcessor kModuleAnnotationPostProcessor() {
-        KModuleAnnotationPostProcessor kModuleAnnotationPostProcessor = new KModuleAnnotationPostProcessor();
-        return kModuleAnnotationPostProcessor;
     }
 
 }

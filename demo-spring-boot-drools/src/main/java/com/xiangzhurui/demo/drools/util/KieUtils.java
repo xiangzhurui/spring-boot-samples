@@ -1,5 +1,9 @@
 package com.xiangzhurui.demo.drools.util;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
+
 import com.xiangzhurui.demo.drools.component.LoadRulesComponent;
 import com.xiangzhurui.demo.drools.domain.DrlDataDO;
 import lombok.extern.slf4j.Slf4j;
@@ -11,10 +15,6 @@ import org.kie.api.builder.model.KieBaseModel;
 import org.kie.api.builder.model.KieModuleModel;
 import org.kie.api.builder.model.KieSessionModel;
 import org.kie.api.runtime.KieContainer;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.ResolverStyle;
 
 /**
  * @author xiangzhurui
@@ -38,7 +38,6 @@ public class KieUtils {
 
         return releaseId;
     }
-
 
 
     public static KieContainer kieContainer(ReleaseId defaultReleaseId, LoadRulesComponent loadRulesComponent) {

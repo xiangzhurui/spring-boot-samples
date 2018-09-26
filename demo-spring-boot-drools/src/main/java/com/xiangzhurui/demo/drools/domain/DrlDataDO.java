@@ -1,13 +1,13 @@
 package com.xiangzhurui.demo.drools.domain;
 
+import java.io.Serializable;
+import java.text.MessageFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.kie.api.io.ResourceType;
-
-import java.io.Serializable;
-import java.text.MessageFormat;
 
 /**
  * @author xiangzhurui
@@ -21,7 +21,12 @@ public class DrlDataDO implements Serializable {
     private static final String KIE_FILESYSTEM_SEPARATOR = "/";
     private static final String KIE_PACKAGE_REGEX = "\\.";
     private static final String KIE_PACKAGE_SEPARATOR = ".";
-
+    private String pkgName;
+    private String path;
+    private String content;
+    private String kBaseName;
+    private String statefulSessionName;
+    private String statelessSessionName;
     public DrlDataDO(String pkgName, String content) {
         this.pkgName = pkgName;
         this.content = content;
@@ -31,12 +36,13 @@ public class DrlDataDO implements Serializable {
         this.statelessSessionName = this.newStatelessSessionName();
     }
 
-    private String pkgName;
-    private String path;
-    private String content;
-    private String kBaseName;
-    private String statefulSessionName;
-    private String statelessSessionName;
+    private static int getLength(String pkgName) {
+        return pkgName.length();
+    }
+
+    private static int getBeginIndex(String pkgName) {
+        return pkgName.lastIndexOf(KIE_PACKAGE_SEPARATOR) + 1;
+    }
 
     /**
      * 获取约定路径
@@ -66,13 +72,5 @@ public class DrlDataDO implements Serializable {
         String prefix = this.pkgName.substring(getBeginIndex(pkgName), getLength(this.pkgName));
         String format = MessageFormat.format("base-{0}", prefix);
         return format;
-    }
-
-    private static int getLength(String pkgName) {
-        return pkgName.length();
-    }
-
-    private static int getBeginIndex(String pkgName) {
-        return pkgName.lastIndexOf(KIE_PACKAGE_SEPARATOR)+1;
     }
 }

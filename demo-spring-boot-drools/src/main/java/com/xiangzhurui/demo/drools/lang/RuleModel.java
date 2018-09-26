@@ -1,13 +1,12 @@
 package com.xiangzhurui.demo.drools.lang;
 
+import java.io.Serializable;
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.drools.workbench.models.datamodel.rule.RuleAttribute;
-
-import java.io.Serializable;
-import java.util.List;
 
 /**
  * @author xiangzhurui

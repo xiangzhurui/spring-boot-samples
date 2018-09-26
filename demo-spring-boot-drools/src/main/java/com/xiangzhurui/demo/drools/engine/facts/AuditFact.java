@@ -1,10 +1,10 @@
 package com.xiangzhurui.demo.drools.engine.facts;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.io.Serializable;
 import java.util.Date;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor

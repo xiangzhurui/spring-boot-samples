@@ -11,7 +11,7 @@ import lombok.Getter;
 @Getter
 public enum PolicyModeEnum {
     WORST_MATCH("WorstMatch", "最坏匹配模式"),
-    WEIGHTED("Weighted","权重模式");
+    WEIGHTED("Weighted", "权重模式");
 
     private String code;
     private String desc;

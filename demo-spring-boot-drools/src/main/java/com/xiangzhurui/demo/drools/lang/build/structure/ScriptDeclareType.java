@@ -1,14 +1,15 @@
 package com.xiangzhurui.demo.drools.lang.build.structure;
 
+import java.util.Collections;
+import java.util.Map;
+
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
 
-import java.util.Collections;
-import java.util.Map;
-
 /**
  * 类型生命
+ *
  * @author xiangzhurui
  * @version 2017/11/29
  */

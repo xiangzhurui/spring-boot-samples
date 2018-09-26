@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * 全局变量
+ *
  * @author xiangzhurui
  * @version 2017/11/29
  */

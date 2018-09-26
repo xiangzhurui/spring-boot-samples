@@ -6,6 +6,7 @@ import lombok.NonNull;
 
 /**
  * 函数
+ *
  * @author xiangzhurui
  * @version 2017/11/29
  */

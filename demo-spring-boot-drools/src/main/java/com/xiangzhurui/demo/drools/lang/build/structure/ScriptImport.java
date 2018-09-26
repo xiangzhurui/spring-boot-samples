@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * 引入
+ *
  * @author xiangzhurui
  * @version 2017/11/29
  */
@@ -15,6 +16,6 @@ public class ScriptImport {
 
     @Override
     public String toString() {
-        return "import "+target.getName() +";\n";
+        return "import " + target.getName() + ";\n";
     }
 }

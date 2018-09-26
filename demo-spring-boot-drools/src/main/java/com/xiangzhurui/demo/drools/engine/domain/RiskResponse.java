@@ -1,5 +1,9 @@
 package com.xiangzhurui.demo.drools.engine.domain;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
@@ -7,12 +11,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * 风险详情结果响应
+ *
  * @author xiangzhurui
  * @version 2018/4/27
  */

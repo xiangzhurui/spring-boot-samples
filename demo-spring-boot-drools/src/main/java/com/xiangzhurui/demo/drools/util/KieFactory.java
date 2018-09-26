@@ -1,5 +1,11 @@
 package com.xiangzhurui.demo.drools.util;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 import lombok.extern.slf4j.Slf4j;
 import org.kie.api.KieServices;
 import org.kie.api.builder.*;
@@ -10,12 +16,6 @@ import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.kie.api.runtime.StatelessKieSession;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
 /**
  * @author xiangzhurui
  * @version 2017/9/30
@@ -24,14 +24,13 @@ import java.util.concurrent.ConcurrentHashMap;
 public class KieFactory {
 
     public static final KieServices kieServices = KieServices.get();
-
-    private KieFactory() {
-    }
-
     /**
      * 持有多个 Container
      */
     private static Map<ReleaseId, KieContainer> kieContainerMap = new ConcurrentHashMap<>();
+
+    private KieFactory() {
+    }
 
     /**
      * 更新 kieContainerMap

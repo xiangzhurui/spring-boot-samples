@@ -1,9 +1,9 @@
 package com.xiangzhurui.demo.drools.lang;
 
+import java.io.Serializable;
+
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
-
-import java.io.Serializable;
 
 /**
  * @author xiangzhurui
