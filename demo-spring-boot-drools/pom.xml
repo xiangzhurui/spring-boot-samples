@@ -86,7 +86,14 @@
             <groupId>org.drools</groupId>
             <artifactId>drools-model-compiler</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>org.kie.workbench.screens</groupId>
+            <artifactId>kie-wb-common-workbench-backend</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.kie.workbench.screens</groupId>
+            <artifactId>kie-wb-common-workbench-client</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.drools</groupId>
             <artifactId>drools-templates</artifactId>
