@@ -51,8 +51,8 @@
         </dependency>
 
         <dependency>
-            <groupId>com.example</groupId>
-            <artifactId>demo-dubbo-api</artifactId>
+            <groupId>com.xiangzhurui.demo</groupId>
+            <artifactId>demo-spring-boot-dubbo-api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
