@@ -96,10 +96,10 @@ public class RestTemplateConfig {
         PoolingHttpClientConnectionManager poolingHttpClientConnectionManager = new PoolingHttpClientConnectionManager(socketFactoryRegistry);
 
         // 连接池最大并发连接数
-        poolingHttpClientConnectionManager.setMaxTotal(100);
+        poolingHttpClientConnectionManager.setMaxTotal(2000);
 
         // 单路由最大并发数
-        poolingHttpClientConnectionManager.setDefaultMaxPerRoute(20);
+        poolingHttpClientConnectionManager.setDefaultMaxPerRoute(8);
 
         return poolingHttpClientConnectionManager;
     }
@@ -142,7 +142,7 @@ public class RestTemplateConfig {
             SSLConnectionSocketFactory sslConnectionSocketFactory = new SSLConnectionSocketFactory(builder.build());
             return sslConnectionSocketFactory;
         } catch (NoSuchAlgorithmException | KeyStoreException | KeyManagementException e) {
-            e.printStackTrace();
+            log.error("init SSLConnectionSocketFactory fail !", e);
         }
         return null;
     }
@@ -154,9 +154,9 @@ public class RestTemplateConfig {
      */
     private RequestConfig getRequestConfig() {
         RequestConfig requestConfig = RequestConfig.custom()
-                .setConnectTimeout(200)
-                .setSocketTimeout(500)
-                .setConnectionRequestTimeout(200)
+                .setConnectTimeout(1000 * 3)
+                .setSocketTimeout(1000 * 3)
+                .setConnectionRequestTimeout(1000 * 2)
                 .setCookieSpec(CookieSpecs.STANDARD_STRICT)
                 .setExpectContinueEnabled(true)
                 .setTargetPreferredAuthSchemes(Arrays.asList(AuthSchemes.NTLM, AuthSchemes.DIGEST))
