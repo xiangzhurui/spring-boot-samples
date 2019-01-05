@@ -17,13 +17,17 @@ import lombok.NonNull;
 public class RuleScript {
     @NonNull
     private ScriptPackage pkg;
-
+    @Builder.Default
     private Collection<ScriptImport> scriptImports = Collections.EMPTY_LIST;
+    @Builder.Default
     private Collection<ScriptFunction> scriptFunctions = Collections.EMPTY_SET;
+    @Builder.Default
     private Collection<ScriptGlobal> scriptGlobals = Collections.EMPTY_SET;
+    @Builder.Default
     private Collection<ScriptDeclareType> scriptDeclareTypes = Collections.EMPTY_SET;
 
     @NonNull
+    @Builder.Default
     private Collection<ScriptRule> scriptRules = Collections.EMPTY_SET;
 
     @Override

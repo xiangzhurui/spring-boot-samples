@@ -22,6 +22,8 @@ public class ScriptDeclareType {
      * name:type
      */
     @NonNull
+    @Builder.Default
+
     private Map<String, String> types = Collections.EMPTY_MAP;
 
     public Map<String, String> getTypes() {

@@ -3,7 +3,7 @@ package com.xiangzhurui.rules.audit;
 import java.util.*;
 import org.apache.commons.lang3.*;
 import org.apache.commons.beanutils.*;
-import com.xiangzhurui.drools.engine.facts.AuditFact;
+import com.xiangzhurui.demo.drools.engine.facts.AuditFact;
 
 global ConvertUtilsBean2 convertUtilsBean;
 

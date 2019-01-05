@@ -1,5 +1,12 @@
 package com.xiangzhurui.demo.drools;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
 import com.xiangzhurui.demo.drools.domain.Person;
 import com.xiangzhurui.demo.drools.domain.RouterFact;
 import lombok.extern.slf4j.Slf4j;
@@ -9,13 +16,22 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.kie.api.KieBase;
 import org.kie.api.KieServices;
-import org.kie.api.builder.*;
+import org.kie.api.builder.KieBuilder;
+import org.kie.api.builder.KieFileSystem;
+import org.kie.api.builder.KieRepository;
+import org.kie.api.builder.KieScanner;
+import org.kie.api.builder.Message;
+import org.kie.api.builder.ReleaseId;
+import org.kie.api.builder.Results;
 import org.kie.api.builder.model.KieBaseModel;
 import org.kie.api.builder.model.KieModuleModel;
 import org.kie.api.builder.model.KieSessionModel;
 import org.kie.api.command.BatchExecutionCommand;
 import org.kie.api.command.Command;
 import org.kie.api.definition.type.FactType;
+import org.kie.api.event.kiescanner.KieScannerEventListener;
+import org.kie.api.event.kiescanner.KieScannerStatusChangeEvent;
+import org.kie.api.event.kiescanner.KieScannerUpdateResultsEvent;
 import org.kie.api.io.KieResources;
 import org.kie.api.io.Resource;
 import org.kie.api.runtime.ExecutionResults;
@@ -25,12 +41,6 @@ import org.kie.api.runtime.StatelessKieSession;
 import org.kie.internal.command.CommandFactory;
 import org.slf4j.LoggerFactory;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 /**
  * 简单示例
  *
@@ -38,8 +48,37 @@ import java.util.Map;
  * @version 2017/9/29
  */
 @Slf4j
-public class DroolsTest {
+public class KieDroolsTest {
+    private static final KieServices KIE_SERVICES = KieServices.Factory.get();
+
+
     private KieContainer kieContainer;
+
+
+    @Test
+    public void testScanner() throws InterruptedException {
+        log.info("kieContainer.getReleaseId()1==={}",kieContainer.getReleaseId());
+
+        KieScanner kieScanner = KIE_SERVICES.newKieScanner(kieContainer);
+        kieScanner.addListener(new KieScannerEventListener() {
+            @Override
+            public void onKieScannerStatusChangeEvent(KieScannerStatusChangeEvent statusChange) {
+                log.info("statusChange==={}", statusChange);
+            }
+
+            @Override
+            public void onKieScannerUpdateResultsEvent(KieScannerUpdateResultsEvent updateResults) {
+                log.info("updateResults==={}", updateResults);
+            }
+        });
+
+        kieScanner.start(TimeUnit.SECONDS.toMillis(2));
+        buildNewVersion();
+        log.info("kieContainer.getReleaseId()2==={}",kieContainer.getReleaseId());
+        TimeUnit.MINUTES.sleep(1);
+        log.info("kieContainer.getReleaseId()3==={}",kieContainer.getReleaseId());
+
+    }
 
     @Test
     public void testKieModuleModel() {
@@ -210,16 +249,15 @@ public class DroolsTest {
     }
 
     private void buildNewVersion() {
-        KieServices kieServices = KieServices.Factory.get();
 
 
         // 创建一个 KieResources 对象
-        KieResources resources = kieServices.getResources();
+        KieResources resources = KIE_SERVICES.getResources();
         Resource test1Resource = resources.newClassPathResource("rules/test1.drl");
-        KieFileSystem fileSystem = kieServices.newKieFileSystem();
-        ReleaseId releaseId = kieServices.newReleaseId("com.xzr", "rules.test", "2.0.0");
+        KieFileSystem fileSystem = KIE_SERVICES.newKieFileSystem();
+        ReleaseId releaseId = KIE_SERVICES.newReleaseId("com.xzr", "rules.test", "2.0.0");
 
-        KieModuleModel kieModuleModel = kieServices.newKieModuleModel();
+        KieModuleModel kieModuleModel = KIE_SERVICES.newKieModuleModel();
 
         // 2. 再创建 KieBaseModel, 类似于xml中的 kbase节点, name=kbase-rules, package=rules
         KieBaseModel baseModel = kieModuleModel.newKieBaseModel("kbase-rules").addPackage("rules");
@@ -232,25 +270,23 @@ public class DroolsTest {
         fileSystem.generateAndWritePomXML(releaseId);
         fileSystem.write(test1Resource);
 
-        KieBuilder kieBuilder = kieServices.newKieBuilder(fileSystem).buildAll();
+        KieBuilder kieBuilder = KIE_SERVICES.newKieBuilder(fileSystem).buildAll();
         log.info("---{}", kieBuilder);
-        ReleaseId version_2 = kieServices.getRepository().getKieModule(kieServices.newReleaseId("com.xzr", "rules.test", "1.0.0")).getReleaseId();
+        ReleaseId version_2 = KIE_SERVICES.getRepository().getKieModule(KIE_SERVICES.newReleaseId("com.xzr", "rules.test", "1.0.0")).getReleaseId();
         log.info(version_2.toExternalForm());
     }
 
     @Before
     public void setClassPathKieContainer() {
         // 获取 drools 实现的 KieServices 实例
-        KieServices kieServices = KieServices.Factory.get();
-
 
         // 创建一个 KieResources 对象
-        KieResources kieResources = kieServices.getResources();
+        KieResources kieResources = KIE_SERVICES.getResources();
 
         // 1. 先创建 KieModuleModel, 类似于xml中的 kmodule 节点
 
 
-        KieModuleModel kieModuleModel = kieServices.newKieModuleModel();
+        KieModuleModel kieModuleModel = KIE_SERVICES.newKieModuleModel();
 
         // 2. 再创建 KieBaseModel, 类似于xml中的 kbase节点, name=kbase-rules, package=rules
         KieBaseModel baseModel = kieModuleModel.newKieBaseModel("kbase-rules").addPackage("rules");
@@ -266,9 +302,9 @@ public class DroolsTest {
         auditRuleBaseModel.newKieSessionModel("audit-session-one").setType(KieSessionModel.KieSessionType.STATEFUL);
         auditRuleBaseModel.newKieSessionModel("audit-session-one-less").setType(KieSessionModel.KieSessionType.STATELESS);
 
-        ReleaseId releaseId = kieServices.newReleaseId("com.xzr", "rules.test", "1.0.0");
+        ReleaseId releaseId = KIE_SERVICES.newReleaseId("com.xzr", "rules.test", "1.0.0");
         // 创建一个 KieFileSystem
-        KieFileSystem fileSystem = kieServices.newKieFileSystem();
+        KieFileSystem fileSystem = KIE_SERVICES.newKieFileSystem();
         fileSystem.generateAndWritePomXML(releaseId);
 
         Resource resources = kieResources.newClassPathResource("rules/test.drl"); //实际上为虚拟路径
@@ -292,14 +328,14 @@ public class DroolsTest {
 
         // 7. 最后通过 KieBuilder 进行构建就将该 kmodule 加入到 KieRepository 中,
         // 这样就将自定义的kmodule加入到引擎中了
-        KieBuilder kieBuilder = kieServices.newKieBuilder(fileSystem);
+        KieBuilder kieBuilder = KIE_SERVICES.newKieBuilder(fileSystem);
         kieBuilder.buildAll(); // 编译
         // 下面就可以向原来一样使用了
         // 得到 KieContainer
 //        KieContainer kieContainer = kieServices.newKieContainer(kieServices.getRepository().getDefaultReleaseId());
 
 
-        KieContainer kieContainer = kieServices.newKieContainer(releaseId);
+        KieContainer kieContainer = KIE_SERVICES.newKieContainer(releaseId);
         this.kieContainer = kieContainer;
     }
 }

@@ -2,8 +2,8 @@ package com.xzr.test.person;
 
 import java.util.List;
 import java.math.BigDecimal;
-import com.xiangzhurui.drools.domain.Person;
-import com.xiangzhurui.drools.domain.RouterFact;
+import com.xiangzhurui.demo.drools.domain.Person;
+import com.xiangzhurui.demo.drools.domain.RouterFact;
 import org.slf4j.Logger;
 import com.google.gson.*;
 import java.util.*;
