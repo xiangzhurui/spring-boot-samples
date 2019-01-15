@@ -10,11 +10,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.kie.api.KieServices;
 import org.kie.api.builder.KieBuilder;
 import org.kie.api.builder.KieFileSystem;
+import org.kie.api.builder.Message;
 import org.kie.api.builder.ReleaseId;
+import org.kie.api.builder.Results;
 import org.kie.api.builder.model.KieBaseModel;
 import org.kie.api.builder.model.KieModuleModel;
 import org.kie.api.builder.model.KieSessionModel;
 import org.kie.api.runtime.KieContainer;
+import org.springframework.util.Assert;
 
 /**
  * @author xiangzhurui
@@ -70,6 +73,9 @@ public class KieUtils {
 
         // 编译 kjar 文件
         KieBuilder kieBuilder = KIE_SERVICES.newKieBuilder(fileSystem);
-        kieBuilder.buildAll();
+        kieBuilder = kieBuilder.buildAll();
+        Results results = kieBuilder.getResults();
+        Assert.isTrue(0 == kieBuilder.getResults().getMessages(Message.Level.ERROR).size(), "构件失败：" + results.getMessages());
+
     }
 }
