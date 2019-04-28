@@ -1,5 +1,13 @@
 package com.xiangzhurui.example.demo.restful;
 
+import static sun.tools.jconsole.Messages.CLASS_PATH;
+
+import java.util.ArrayList;
+import javax.tools.JavaCompiler;
+import javax.tools.JavaFileObject;
+import javax.tools.StandardJavaFileManager;
+import javax.tools.ToolProvider;
+
 /**
  * @author xiangzhurui
  * @version 2019-04-28 10:26
@@ -11,6 +19,7 @@ public class MyCompiler {
         //获取java文件管理类
         StandardJavaFileManager manager = compiler.getStandardFileManager(null, null, null);
         //获取java文件对象迭代器
+        String files = null;
         Iterable<? extends JavaFileObject> it = manager.getJavaFileObjects(files);
         //设置编译参数
         ArrayList<String> ops = new ArrayList<String>();
